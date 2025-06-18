@@ -76,6 +76,10 @@ This represents my practical exploration of the Spring ecosystem and enterprise 
 
 
 
+https://github.com/user-attachments/assets/170dcd2b-de03-4a73-bb5a-0003402dc13b
+
+
+
 
 ### 🎥 Demo Features
 - ✅ **User Registration**: Secure account creation
