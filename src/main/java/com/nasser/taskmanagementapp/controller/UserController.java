@@ -2,7 +2,7 @@ package com.nasser.taskmanagementapp.controller;
 
 import com.nasser.taskmanagementapp.entity.User;
 import com.nasser.taskmanagementapp.service.UserService;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -10,20 +10,16 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
+@RequestMapping("/user")
+@RequiredArgsConstructor
 public class UserController {
 
     private final UserService userService;
 
-    PasswordEncoder passwordEncoder;
-
-    @Autowired
-    public UserController(UserService userService, PasswordEncoder passwordEncoder) {
-        this.userService = userService;
-        this.passwordEncoder = passwordEncoder;
-    }
-
+  
     @GetMapping("/")
     public String root() {
         return "redirect:/login";
@@ -45,9 +41,8 @@ public class UserController {
         if (result.hasErrors()) {
             return "register";
         }
-        user.setPassword(passwordEncoder.encode(user.getPassword()));
         userService.save(user);
-        return "redirect:/login";
+        return "redirect:/tasks";
 
 
     }

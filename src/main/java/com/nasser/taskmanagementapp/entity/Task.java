@@ -2,7 +2,6 @@ package com.nasser.taskmanagementapp.entity;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -31,7 +30,8 @@ public class Task {
     private LocalDate dueDate;
 
     @Column(name = "status", nullable = false, length = 20)
-    private String status;
+    @Enumerated(value = EnumType.STRING)
+    private TaskStatus status;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id", nullable = false)

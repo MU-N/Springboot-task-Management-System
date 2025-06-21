@@ -4,6 +4,7 @@ import com.nasser.taskmanagementapp.entity.Task;
 import com.nasser.taskmanagementapp.entity.User;
 import com.nasser.taskmanagementapp.service.TaskService;
 import jakarta.validation.Valid;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
@@ -15,14 +16,10 @@ import java.util.List;
 
 @Controller
 @RequestMapping("/tasks")
+@RequiredArgsConstructor
 public class TaskController {
 
     private final TaskService taskService;
-
-    @Autowired
-    public TaskController(TaskService taskService) {
-        this.taskService = taskService;
-    }
 
     @GetMapping("")
     public String listTasks(@AuthenticationPrincipal User user, Model model) {
